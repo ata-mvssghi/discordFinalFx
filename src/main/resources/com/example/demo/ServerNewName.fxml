@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="324.0" prefWidth="444.0" style="-fx-background-color: #4f5e80;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ServerNewName">
+   <children>
+      <Label layoutX="112.0" layoutY="26.0" prefHeight="42.0" prefWidth="220.0" text="change server name" textFill="#1eb13e">
+         <font>
+            <Font name="Bodoni MT Black" size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="newNAme" layoutX="135.0" layoutY="149.0" prefHeight="26.0" prefWidth="174.0" />
+      <Label layoutX="104.0" layoutY="118.0" text="new neame" textFill="#faf6f6" />
+      <Button layoutX="187.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#confirm" style="-fx-background-color: #16b536;" text="confirm" textFill="#f4f0f0">
+         <font>
+            <Font name="Bodoni MT" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

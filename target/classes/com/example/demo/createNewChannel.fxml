@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="460.0" prefWidth="601.0" style="-fx-background-color: #515257;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.createNEwChannelController">
+   <children>
+      <RadioButton layoutX="147.0" layoutY="104.0" mnemonicParsing="false" text="TEXT" textFill="#faf4f4">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="46.0" layoutY="37.0" text="creaate a new channel" textFill="#ab34b1">
+         <font>
+            <Font name="Bodoni MT Black" size="22.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="149.0" layoutY="164.0" mnemonicParsing="false" text="VOICE" textFill="#fcf6f6">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="102.0" layoutY="280.0" text="CHANNEL NAME" textFill="#18f762" />
+      <TextField fx:id="channelName" layoutX="127.0" layoutY="307.0" prefHeight="26.0" prefWidth="347.0" />
+      <Button layoutX="345.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#back" style="-fx-background-color: #f50f2a;" text="CANCEL" textFill="#f7f2f2" />
+      <Button layoutX="448.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#create" style="-fx-background-color: #0f54f5;" text="CREATE CHANNEL" textFill="#fcf9f9" />
+   </children>
+</AnchorPane>

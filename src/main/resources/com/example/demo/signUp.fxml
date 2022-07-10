@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="468.0" prefWidth="526.0" style="-fx-background-color: #3b3c4f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.signUpController">
+   <children>
+      <Label layoutX="205.0" layoutY="46.0" text="crate an account" textFill="#15e160">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameTextField" layoutX="83.0" layoutY="120.0" prefHeight="26.0" prefWidth="320.0" />
+      <Label layoutX="55.0" layoutY="85.0" text="username " textFill="#f7f3f3" />
+      <Label layoutX="55.0" layoutY="187.0" text="password" textFill="#f4eeee" />
+      <TextField fx:id="passwordTextField" layoutX="83.0" layoutY="234.0" prefHeight="26.0" prefWidth="320.0" />
+      <Label layoutX="55.0" layoutY="303.0" text="email" textFill="#f4f3f3" />
+      <TextField fx:id="emailTextField" layoutX="84.0" layoutY="352.0" prefHeight="26.0" prefWidth="320.0" />
+      <Button layoutX="232.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#signup" style="-fx-background-color: #2466d6;" text="continue" />
+      <Label fx:id="usernameRes" layoutX="91.0" layoutY="155.0" prefHeight="18.0" prefWidth="218.0" textFill="#d43131" />
+      <Label fx:id="passwordRes" layoutX="96.0" layoutY="274.0" prefHeight="18.0" prefWidth="218.0" textFill="#cc1616" />
+      <Label fx:id="emailRes" layoutX="91.0" layoutY="395.0" prefHeight="18.0" prefWidth="218.0" textFill="#d40a0a" />
+   </children>
+</AnchorPane>
