@@ -229,7 +229,6 @@ public class chatController implements Initializable {
     }
     public void pin(Event event){
     PinMessagesController.currentChatId=chatID;
-        
             FXMLLoader loader=new FXMLLoader(Objects.requireNonNull(getClass().getResource("pinnedMessages.fxml")));
             AnchorPane pane= null;
             try {

@@ -373,7 +373,6 @@ public class Server {
                             bos = new BufferedOutputStream(fos);
                             bytesRead = objectInput.read(mybytearray, 0, mybytearray.length);
                             current = bytesRead;
-                            System.out.println("338");
                             do {
                                 bytesRead =
                                         objectInput.read(mybytearray, current, (mybytearray.length - current));
@@ -381,7 +380,6 @@ public class Server {
                                 System.out.println(bytesRead);
                             }
                             while (bytesRead ==1024);
-                            System.out.println("344");
                             bos.write(mybytearray, 0, current);
                             bos.flush();
                             bos.close();

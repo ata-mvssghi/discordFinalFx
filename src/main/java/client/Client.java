@@ -555,10 +555,15 @@ public class Client implements Serializable {
                        }
                         else if(message.getType()== Message.Type.pin){
                             int targetId=(Integer)inputStream.readObject();
-                            for(Group group:groups){
+                           System.out.println("558");
+                            for(Group group:signInController.client.groups){
+                                System.out.println("560");
                                 if (group.getId()==targetId){
+                                    System.out.println("562");
                                     for(Message message1:group.getMessages()){
+                                        System.out.println("564");
                                         if(message1.getText().equals(message.getText())){
+                                            System.out.println("566");
                                             message1.setPinned(true);
                                             break;
                                         }

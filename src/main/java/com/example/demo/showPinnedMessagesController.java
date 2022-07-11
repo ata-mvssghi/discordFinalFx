@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import Group.Group;
+import MessagePack.Message;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,16 +32,27 @@ public class showPinnedMessagesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int i = 1;
-        for (String pinned : PinMessagesController.pinnedMessages) {
-            System.out.println("222222222222222222222222222222222222222222");
-            HBox hBox = new HBox();
-            Label messages = new Label();
-            messages.setStyle("-fx-text-fill:WHITE; -fx-font-size: 15;");
-            messages.setText(i + "----->" + pinned);
-            hBox.getChildren().add(messages);
-            HBox.setMargin(messages, new Insets(10, 10, 10, 10));
-            showPinned.getChildren().add(hBox);
+        for(Group group:signInController.client.groups){
+            if(group.getId()==PinMessagesController.currentChatId){
+                System.out.println("wwwwwww");
+                for (Message message : group.getMessages()) {
+                    System.out.println("222222222222222222222222222222222222222222");
+                    if (message.isPinned()) {
+                        HBox hBox = new HBox();
+                        Label messages = new Label();
+                        messages.setStyle("-fx-text-fill:WHITE; -fx-font-size: 15;");
+                        messages.setText(i+"-->"+message.getSender()+" : "+message.getText());
+                        i++;
+                        hBox.getChildren().add(messages);
+                        HBox.setMargin(messages, new Insets(10, 10, 10, 10));
+                        showPinned.getChildren().add(hBox);
+                    }
+                }
+            }
         }
+
+
+
     }
     public void back(Event event) {
         try {
