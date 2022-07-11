@@ -11,7 +11,7 @@
       <Button layoutX="38.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#switchTOInvitePeople" prefHeight="26.0" prefWidth="93.0" style="-fx-background-color: #bc25e6;" text="invite people" textFill="#f7f1f1" />
       <Button layoutX="26.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#createNewChannel" style="-fx-background-color: #0f88d4;" text="create new channel" textFill="#fcf6f6" />
       <Button layoutX="41.0" layoutY="90.0" mnemonicParsing="false" style="-fx-background-color: #05eb2b;" text="change name" textFill="#fcf4f4" />
-      <ScrollPane fx:id="sp" layoutX="-1.0" layoutY="288.0" prefHeight="391.0" prefWidth="169.0" style="-fx-background-color: #4f5ca1;">
+      <ScrollPane fx:id="sp" layoutX="-1.0" layoutY="377.0" prefHeight="302.0" prefWidth="170.0" style="-fx-background-color: #4f5ca1;">
          <content>
             <VBox fx:id="channels" prefHeight="390.0" prefWidth="165.0" style="-fx-background-color: #4f5ca1;" />
          </content></ScrollPane>
@@ -20,5 +20,6 @@
             <Font name="Bodoni MT" size="14.0" />
          </font>
       </Button>
+      <VBox fx:id="users" layoutY="177.0" prefHeight="200.0" prefWidth="170.0" />
    </children>
 </AnchorPane>

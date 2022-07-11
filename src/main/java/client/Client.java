@@ -503,8 +503,8 @@ public class Client implements Serializable {
                                     targetc = client;
                                 }
                             }
-                            System.out.println("target"+targetc.getUsername());
-                            System.out.println("origin c "+originc.getUsername()+"target"+targetc.getUsername());
+                           // System.out.println("target"+targetc.getUsername());
+                           // System.out.println("origin c "+originc.getUsername()+"target"+targetc.getUsername());
                            signInController.client.friendShipReqs.add(new FriendShipReq(message.getText(), username, "request"));
                            System.out.println("successfully added to saves firends");
                            for(FriendShipReq friendShipReq:friendShipReqs){
@@ -1101,6 +1101,7 @@ public class Client implements Serializable {
 
     public void setServerClients(ArrayList<Client> serverClients) {
         this.serverClients = serverClients;
+        signInController.client.serverClients=serverClients;
     }
 
     public ArrayList<Client> getServerClients() {

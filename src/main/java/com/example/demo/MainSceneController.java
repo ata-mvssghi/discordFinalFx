@@ -141,7 +141,6 @@ public class MainSceneController implements Serializable,Initializable {
                     try {
                         pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("serverSettings.fxml")));
                         directs.setTop(null);
-                        directs.setBottom(null);
                         directs.setCenter(pane);
                         invitePeopleToServerController.serverIndex=Integer.valueOf(hBox.getId());
                     } catch (IOException e) {
@@ -153,6 +152,7 @@ public class MainSceneController implements Serializable,Initializable {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     serverNAme.setWrapText(true);
+                    serverNAme.setStyle("-fx-text-fill:WHITE; -fx-font-size: 15;");
                     serverNAme.setText(serverChat.getServerName());
                 }
             });

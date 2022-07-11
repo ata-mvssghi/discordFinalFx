@@ -38,7 +38,7 @@
                </font>
             </Button>
          </children></VBox>
-      <BorderPane fx:id="directs" layoutX="135.0" prefHeight="519.0" prefWidth="140.0" style="-fx-background-color: #434b59;">
+      <BorderPane fx:id="directs" layoutX="135.0" prefHeight="519.0" prefWidth="130.0" style="-fx-background-color: #434b59;">
          <bottom>
             <ImageView fitHeight="21.0" fitWidth="40.0" onMouseClicked="#switchToSettingScene" BorderPane.alignment="CENTER">
                <image>
@@ -53,6 +53,6 @@
             <Button mnemonicParsing="false" onMouseClicked="#switchToFriend" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #5427d1;" text="friends" textFill="#090515" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
-      <BorderPane fx:id="chatPane" layoutX="275.0" prefHeight="519.0" prefWidth="570.0" />
+      <BorderPane fx:id="chatPane" layoutX="275.0" prefHeight="519.0" prefWidth="735.0" />
    </children>
 </AnchorPane>

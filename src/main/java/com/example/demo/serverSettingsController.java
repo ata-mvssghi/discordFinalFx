@@ -32,6 +32,8 @@ public class serverSettingsController implements Initializable {
     ScrollPane sp;
     @FXML
     VBox channels;
+    @FXML
+    VBox users;
     public void switchTOInvitePeople(Event event){
         try {
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("inviteNewPeopleToServer.fxml")));

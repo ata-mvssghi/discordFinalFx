@@ -59,6 +59,16 @@ public class friendController {
     }
     public void switchToPending(Event event) {
         try {
+            signInController.client.outputStream.writeObject(new Message(signInController.client.username,"nothing but important", Message.Type.allClients));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
             AnchorPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("pending.fxml")));
             temp.setCenter(pane);
         } catch (IOException e) {

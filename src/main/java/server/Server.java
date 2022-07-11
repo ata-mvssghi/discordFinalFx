@@ -438,6 +438,13 @@ public class Server {
 
 
                         }
+                        else if(message.getType()== Message.Type.setImage){
+                            for(Client client:allClients){
+                                if(client.getUsername().equals(message.getSender())){
+                                    client.image=message.getText();
+                                }
+                            }
+                        }
                     }
                     else if (request instanceof FriendShipReq) {
                         FriendShipReq friendShipReq=(FriendShipReq) request;

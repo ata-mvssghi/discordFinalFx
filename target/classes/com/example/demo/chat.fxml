@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="504.0" prefWidth="773.0" style="-fx-background-color: #42414d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.chatController">
+<AnchorPane prefHeight="504.0" prefWidth="754.0" style="-fx-background-color: #42414d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.chatController">
    <children>
-      <HBox layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="748.0">
+      <HBox layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="726.0">
          <children>
             <Label fx:id="chatName" prefHeight="46.0" prefWidth="168.0" text="Label" textFill="#eceaea">
                <padding>

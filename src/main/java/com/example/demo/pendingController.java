@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,19 +51,33 @@ public class pendingController implements Initializable {
         int i = 1;
         for (FriendShipReq friendShipReq : signInController.client.friendShipReqs) {
             HBox hBox = new HBox(60);
-            /*ImageView imageView = new ImageView();
+            ImageView imageView = new ImageView();
             for (Client client : signInController.client.serverClients) {
                 if (client.getUsername().equals(friendShipReq.getOriginClient())) {
                     if (client.image == null) {
-                        Image image = new Image("C:\\Users\\mhdsa\\Desktop\\New folder (4)\\games_oop_javafx-master\\demo\\src\\main\\resources\\pics");
+                        Image image = null;
+                        try {
+                            image = new Image(new FileInputStream("C:\\Users\\SPINO.SHOP\\Desktop\\me my own\\the last version\\games_oop_javafx-master\\demo\\src\\main\\resources\\pics\\pro.jpg"));
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println("57");
                         imageView.setImage(image);
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
                     }
-                } else {
-                    imageView.setImage(client.image);
-                    System.out.println(61);
+                    else {
+                        Image image = null;
+                        try {
+                            image = new Image(new FileInputStream(client.image));
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        imageView.setImage(image);
+                        System.out.println(61);
+                    }
                 }
-            }*/
+            }
 
             Button yes = new Button("YES");
             Button no = new Button("NO");
@@ -69,7 +85,7 @@ public class pendingController implements Initializable {
             no.setId(friendShipReq.getOriginClient());
             Label name1 = new Label();
             name1.setText(i + "--->" + friendShipReq.getOriginClient());
-           // hBox.getChildren().add(imageView);
+            hBox.getChildren().add(imageView);
             hBox.getChildren().add(name1);
             hBox.getChildren().add(yes);
             hBox.getChildren().add(no);

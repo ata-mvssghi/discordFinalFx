@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="377.0" prefWidth="187.0" style="-fx-background-color: #3e435c;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.StatusController">
+   <children>
+      <ImageView fx:id="online" fitHeight="66.0" fitWidth="83.0" layoutX="12.0" layoutY="10.0" onMouseClicked="#setStatus">
+         <image>
+            <Image url="@../../../pics/online.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="107.0" layoutY="29.0" text="online" textFill="#17ef4d">
+         <font>
+            <Font name="Bernard MT Condensed" size="21.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="idle" fitHeight="66.0" fitWidth="83.0" layoutX="12.0" layoutY="101.0" onMouseClicked="#setStatus">
+         <image>
+            <Image url="@../../../pics/idle.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="115.0" layoutY="120.0" text="idle" textFill="#d2f40e">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="doNotDisturb" fitHeight="73.0" fitWidth="83.0" layoutX="17.0" layoutY="199.0" onMouseClicked="#setStatus">
+         <image>
+            <Image url="@../../../pics/do%20not%20disturb.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="102.0" layoutY="228.0" text="do not disturbe" textFill="#bc1111" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="Bernard MT Condensed" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="invisible" fitHeight="73.0" fitWidth="83.0" layoutX="18.0" layoutY="290.0" onMouseClicked="#setStatus">
+         <image>
+            <Image url="@../../../pics/invisiable.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="107.0" layoutY="315.0" text="invisible" textFill="#e1c7c7">
+         <font>
+            <Font name="Bernard MT Condensed" size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

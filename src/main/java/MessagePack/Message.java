@@ -31,6 +31,7 @@ public class Message implements Serializable {
         statusReq,
         serverNewName,
         newGroup,
+        setImage,
         tag,
         pin,
         react,
