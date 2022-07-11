@@ -345,19 +345,19 @@ public class Server {
                         else if (message.getType() == Message.Type.sendFile) {
                             String fileName= (String) objectInput.readObject();
                             String FILE_TO_RECEIVED = "C:\\Users\\SPINO.SHOP\\Desktop\\Midterm project-ata-mohammad\\Discord Project-ata-mohammad\\New-Discord\\src\\SaveSendFile\\"+fileName;
-                            int index = (Integer) objectInput.readObject();
-                            int flag=0;
-                            for(Link link:links){
-                                if(link.chatId==index){
-                                    link.links.add(FILE_TO_RECEIVED);
-                                     flag=1;
-                                }
-                            }
-                            if(flag==0){
-                                Link newLink=new Link(index);
-                                newLink.links.add(FILE_TO_RECEIVED);
-                                links.add(newLink);
-                            }
+//                            int index = (Integer) objectInput.readObject();
+//                            int flag=0;
+//                            for(Link link:links){
+//                                if(link.chatId==index){
+//                                    link.links.add(FILE_TO_RECEIVED);
+//                                     flag=1;
+//                                }
+//                            }
+//                            if(flag==0){
+//                                Link newLink=new Link(index);
+//                                newLink.links.add(FILE_TO_RECEIVED);
+//                                links.add(newLink);
+//                            }
                             //////////
                             int FILE_SIZE = 6022386;
                             int bytesRead;
@@ -389,18 +389,19 @@ public class Server {
                                     + " downloaded (" + current + " bytes read)");
                         }
                         else if(message.getType() == Message.Type.receiveFile){
-                            int index= (int) objectInput.readObject();
-                            ArrayList<String> targetLinks=new ArrayList<>();
-                            for(Link link:links){
-                                if(link.chatId==index){
-                                    targetLinks=link.links;
-                                }
-                            }
-                            objectOutput.writeObject(new Message(name,"nothing inportant", Message.Type.linkOfDownload));
-                            objectOutput.writeObject(targetLinks);
+//                            int index= (int) objectInput.readObject();
+//                            ArrayList<String> targetLinks=new ArrayList<>();
+//                            for(Link link:links){
+//                                if(link.chatId==index){
+//                                    targetLinks=link.links;
+//                                }
+//                            }
+//                            objectOutput.writeObject(new Message(name,"nothing inportant", Message.Type.linkOfDownload));
+//                            objectOutput.writeObject(targetLinks);
                             String address= (String) objectInput.readObject();
-                            int SOCKET_PORT = 13267;
+                            int SOCKET_PORT = 9000;
                             String FILE_TO_SEND = address;
+                            System.out.println(address+"        goy");
                             FileInputStream fis = null;
                             BufferedInputStream bis = null;
                             OutputStream os = null;
@@ -470,6 +471,9 @@ public class Server {
                                     System.out.println("haaa eee esmash : "+clientHandler.name);
                                     clientHandler.sendMsg(new Message(clientHandler.name,friendShipReq.getOriginClient(), Message.Type.friendReq));
                                     System.out.println("466");
+                                }
+                                else if (clientHandler.name.equals(friendShipReq.getOriginClient())) {
+                                    clientHandler.objectOutput.writeObject(allClients);
                                 }
                             }
                         }

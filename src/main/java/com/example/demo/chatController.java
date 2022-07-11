@@ -4,20 +4,36 @@ import Group.Group;
 import MessagePack.Message;
 import javafx.application.Platform;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.Socket;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class chatController implements Initializable {
+    private FileChooser fileChooser=new FileChooser();
     @FXML
     VBox messagesVbox;
     @FXML
@@ -26,7 +42,12 @@ public class chatController implements Initializable {
     TextField text;
     public static int chatID;
     public static String chatLName;
-
+    @FXML
+    Parent root;
+    @FXML
+    Stage stage;
+    @FXML
+    Scene scene;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chatName.setText(chatLName);
@@ -69,5 +90,164 @@ public class chatController implements Initializable {
             }
         });
 
+    }
+    public void sendFile(Event event) throws IOException {
+        fileChooser.setTitle("file picker");
+        fileChooser.getExtensionFilters().clear();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files","*.*"));
+        File file = fileChooser.showOpenDialog(null);
+        if(file==null)  return;
+        System.out.println("goy:"+file.getPath());
+        try {
+            signInController.client.outputStream.writeObject(new Message(signInController.client.username, file.getPath(), Message.Type.sendFile));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String fileName ;
+        String  temp=file.getPath();
+        int last=temp.lastIndexOf('\\');
+       fileName= temp.substring(last,temp.length());
+        System.out.println("file aname;:     "+fileName);
+        try {
+            signInController.client.outputStream.writeObject(fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       HBox hBox=new HBox();
+        hBox.setId(file.getPath());
+        Label fileNameLabel=new Label();
+        fileNameLabel.setText(fileName);
+        ImageView filePic=new ImageView();
+        Image image = new Image(new FileInputStream("C:\\Users\\SPINO.SHOP\\Desktop\\me my own\\the last version\\games_oop_javafx-master\\demo\\src\\main\\resources\\pics\\file.png"));
+        filePic.setImage(image);
+        filePic.setFitWidth(60);
+        filePic.setFitHeight(60);
+        hBox.getChildren().add(fileNameLabel);
+        hBox.getChildren().add(filePic);
+        HBox.setMargin(filePic,new Insets(5,5,5,5));
+        HBox.setMargin(fileNameLabel,new Insets(5,5,5,10));
+        messagesVbox.getChildren().add(hBox);
+        FileInputStream fis = null;
+        BufferedInputStream bis = null;
+        File myFile = new File(file.getPath());
+        byte[] mybytearray = new byte[(int) myFile.length()];
+        fis = new FileInputStream(myFile);
+        bis = new BufferedInputStream(fis);
+        bis.read(mybytearray, 0, mybytearray.length);
+        System.out.println("Sending " + "(" + mybytearray.length + " bytes)");
+        signInController.client.outputStream.write(mybytearray, 0, mybytearray.length);
+        signInController.client.outputStream.flush();
+        System.out.println("Done.");
+        filePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    signInController.client. outputStream.writeObject(new Message(signInController.client.username, "", Message.Type.receiveFile));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    signInController.client.outputStream.writeObject(hBox.getId());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("enter the path of that you want to receive file");
+                String path="H:\\saved files\\"+fileName;
+                String FILE_TO_RECEIVED = path;
+                int FILE_SIZE = 6022386;
+                int SOCKET_PORT = 9000;
+                String SERVER = "127.0.0.1";
+                int bytesRead;
+                int current = 0;
+                FileOutputStream fos = null;
+                BufferedOutputStream bos = null;
+                Socket sock = null;
+                try {
+                    try {
+                        sock = new Socket(SERVER, SOCKET_PORT);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Connecting...");
+
+                    // receive file
+                    byte[] mybytearray = new byte[FILE_SIZE];
+                    InputStream is = null;
+                    try {
+                        is = sock.getInputStream();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        fos = new FileOutputStream(FILE_TO_RECEIVED);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    bos = new BufferedOutputStream(fos);
+                    try {
+                        bytesRead = is.read(mybytearray, 0, mybytearray.length);
+                        current = bytesRead;
+                    do {
+                        System.out.println(mybytearray);
+                        System.out.println(current);
+                        System.out.println(mybytearray.length - current);
+                        try {
+                            bytesRead = is.read(mybytearray, current, (mybytearray.length - current));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if (bytesRead >= 0) current += bytesRead;
+                    } while (bytesRead > -1);
+                }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    try {
+                        bos.write(mybytearray, 0, current);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        bos.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("File " + FILE_TO_RECEIVED
+                            + " downloaded (" + current + " bytes read)");
+                } finally {
+                    try {
+                        if (fos != null) fos.close();
+                        if (bos != null) bos.close();
+                        if (sock != null) sock.close();
+                    }
+                   catch (Exception e){
+                        e.printStackTrace();
+                   }
+                }
+            }
+        });
+    }
+    public void pin(Event event){
+    PinMessagesController.currentChatId=chatID;
+        
+            FXMLLoader loader=new FXMLLoader(Objects.requireNonNull(getClass().getResource("pinnedMessages.fxml")));
+            AnchorPane pane= null;
+            try {
+                pane = loader.load();
+                signInController.client.mainSceneController.setChatPane(pane);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    }
+    public void showPinned(Event event){
+        try {
+            root = FXMLLoader.load(getClass().getResource("showPinnded.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -21,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import Group.Group;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -124,7 +126,6 @@ public class MainSceneController implements Serializable,Initializable {
         for( ServerChat serverChat: Client.serversChats){
             HBox hBox=new HBox();
             ImageView serverPic=new ImageView(new Image(serverChat.imageAddress));
-            serverPic.setPreserveRatio(true);
             serverPic.setFitWidth(72);
             serverPic.setFitHeight(72);
             hBox.setId(serverChat.id+"");
@@ -151,16 +152,34 @@ public class MainSceneController implements Serializable,Initializable {
            serverPic.setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
+                    serverNAme.setWrapText(true);
                     serverNAme.setText(serverChat.getServerName());
                 }
             });
             serverPic.setOnMouseExited(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    hBox.getChildren().clear();
-                    hBox.getChildren().add(serverPic);
+                   serverNAme.setText("");
                 }
             });
+        }
+    }
+    public void createNewPrivateChat(Event event){
+        FXMLLoader loader=new FXMLLoader(Objects.requireNonNull(getClass().getResource("privateChatFriendChoosing.fxml")));
+        try {
+            AnchorPane pane=loader.load();
+            directs.setCenter(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void showPrivateChats(Event event){
+        FXMLLoader loader=new FXMLLoader(Objects.requireNonNull(getClass().getResource("privateChatList.fxml")));
+        try {
+            AnchorPane pane=loader.load();
+            directs.setCenter(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
