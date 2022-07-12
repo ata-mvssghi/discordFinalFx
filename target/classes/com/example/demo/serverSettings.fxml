@@ -20,6 +20,7 @@
             <Font name="Bodoni MT" size="14.0" />
          </font>
       </Button>
-      <VBox fx:id="users" layoutY="177.0" prefHeight="200.0" prefWidth="170.0" />
+      <VBox fx:id="users" layoutY="205.0" prefHeight="172.0" prefWidth="170.0" />
+      <Button layoutX="42.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#setRole" style="-fx-background-color: #1021e0;" text="set a new role" textFill="#faf1f1" />
    </children>
 </AnchorPane>

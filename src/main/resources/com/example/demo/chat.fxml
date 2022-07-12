@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="504.0" prefWidth="754.0" style="-fx-background-color: #42414d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.chatController">
+<AnchorPane fx:id="anchorPane" prefHeight="504.0" prefWidth="754.0" style="-fx-background-color: #42414d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.chatController">
    <children>
       <HBox layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="726.0">
          <children>
@@ -32,12 +32,12 @@
                   <Insets left="325.0" top="12.0" />
                </HBox.margin>
             </Button>
-            <ImageView fitHeight="50.0" fitWidth="46.0" onMouseClicked="#sendFile">
+            <ImageView fitHeight="47.0" fitWidth="62.0">
                <image>
-                  <Image url="@../../../pics/black%20plus.png" />
+                  <Image url="@../../../pics/plus.png" />
                </image>
                <HBox.margin>
-                  <Insets left="25.0" top="2.0" />
+                  <Insets left="5.0" />
                </HBox.margin>
             </ImageView>
             <ImageView fitHeight="48.0" fitWidth="46.0" onMouseClicked="#pin">
@@ -50,12 +50,16 @@
             </ImageView>
          </children>
       </HBox>
-      <Button layoutX="700.0" layoutY="459.0" mnemonicParsing="false" onMouseClicked="#send" style="-fx-background-color: #0be30f;" text="send" textFill="#f4efef" />
       <TextField fx:id="text" layoutX="15.0" layoutY="459.0" prefHeight="26.0" prefWidth="666.0" />
       <ScrollPane layoutX="14.0" layoutY="72.0" prefHeight="375.0" prefWidth="726.0">
          <content>
             <VBox fx:id="messagesVbox" prefHeight="367.0" prefWidth="726.0" style="-fx-background-color: #636e80;" />
          </content>
       </ScrollPane>
+      <ImageView fitHeight="35.0" fitWidth="46.0" layoutX="694.0" layoutY="455.0" onMouseClicked="#send">
+         <image>
+            <Image url="@../../../pics/send.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -43,7 +43,7 @@ public class signInController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SavedScene.initialize();
-        client = new Client("127.0.0.1", 8500, "tempClient", "123456", "test@gmail.com");
+        client = new Client("127.0.0.1", 7000, "tempClient", "123456", "test@gmail.com");
         client.startClient();
        SavedScene.initialize();
 

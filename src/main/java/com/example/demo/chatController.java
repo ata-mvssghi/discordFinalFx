@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -21,6 +22,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
@@ -34,8 +36,14 @@ import java.util.ResourceBundle;
 
 public class chatController implements Initializable {
     private FileChooser fileChooser=new FileChooser();
+    private  int messageIndex=0;
+    private  int loadMessageIndex=0;
+    private int hboxIndex=0;
+    private int loadHboxIndex=0;
     @FXML
     VBox messagesVbox;
+    @FXML
+    AnchorPane anchorPane;
     @FXML
     Label chatName;
     @FXML
@@ -59,20 +67,82 @@ public class chatController implements Initializable {
                     text.setFont(new Font(15));
                     text.setText(message.getSender()+" : "+message.getText());
                     hBox.getChildren().add(text);
+                    loadHboxIndex++;
+                    Image image= null;
+                    try {
+                        image = new Image(new FileInputStream("C:\\Users\\SPINO.SHOP\\Desktop\\me my own\\the last version\\games_oop_javafx-master\\demo\\src\\main\\resources\\pics\\dots.png"));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    ImageView imageView=new ImageView();
+                   imageView.setImage(image);
+                   imageView.setFitHeight(10);
+                   imageView.setFitWidth(5);
+                    hBox.getChildren().add(imageView);
+                    loadMessageIndex++;
                     messagesVbox.getChildren().add(hBox);
+                    hBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            FXMLLoader loader=new FXMLLoader(Objects.requireNonNull(getClass().getResource("reaction.fxml")));
+                            try {
+                                System.out.println("ssssssssss");
+                                AnchorPane pane=loader.load();
+                                pane.setLayoutX(mouseEvent.getX());
+                                pane.setLayoutY(mouseEvent.getSceneY());
+                                hboxIndex++;
+                                loadHboxIndex++;
+                                messagesVbox.getChildren().add(pane);
+                                System.out.println("2222222");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 }
             }
         }
+
     }
     public void send(Event event){
         String message=text.getText();
-        HBox hBox=new HBox();
-        hBox.setAlignment(Pos.BASELINE_LEFT);
+        HBox hBox=new HBox(15);
         Label line=new Label();
         line.setFont(new Font(15));
         line.setText(signInController.client.username+" : "+message);
         hBox.getChildren().add(line);
+        Image image= null;
+        try {
+            image = new Image(new FileInputStream("C:\\Users\\SPINO.SHOP\\Desktop\\me my own\\the last version\\games_oop_javafx-master\\demo\\src\\main\\resources\\pics\\dots.png"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        ImageView imageView=new ImageView();
+        imageView.setImage(image);
+        imageView.setFitHeight(10);
+        imageView.setFitWidth(5);
+        hBox.getChildren().add(imageView);
         messagesVbox.getChildren().add(hBox);
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                FXMLLoader loader=new FXMLLoader(Objects.requireNonNull(getClass().getResource("reaction.fxml")));
+                try {
+                    ReactionController.messageIndex=messageIndex;
+                    for(Group group:signInController.client.groups){
+                        if(group.getId()==chatID){
+                            ReactionController.messages=group.getMessages();
+                        }
+                    }
+                    AnchorPane pane=loader.load();
+                    pane.setLayoutY(mouseEvent.getY());
+                    pane.setLayoutX(mouseEvent.getX());
+                    messagesVbox.getChildren().add(pane);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         try {
             signInController.client.sendMSG(chatID,message);
             text.clear();
@@ -155,7 +225,7 @@ public class chatController implements Initializable {
                 String path="H:\\saved files\\"+fileName;
                 String FILE_TO_RECEIVED = path;
                 int FILE_SIZE = 6022386;
-                int SOCKET_PORT = 9000;
+                int SOCKET_PORT = 7000;
                 String SERVER = "127.0.0.1";
                 int bytesRead;
                 int current = 0;
@@ -248,5 +318,16 @@ public class chatController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    public void react(Event event){
+    Platform.runLater(new Runnable() {
+        @Override
+        public void run() {
+            System.out.println("goy we say");
+            messagesVbox.getChildren().remove(hboxIndex);
+            hboxIndex--;
+            loadHboxIndex--;
+        }
+    });
     }
 }

@@ -18,7 +18,7 @@ public class ServerChat implements Serializable {
     ArrayList<Group> channels=new ArrayList<>();
     ArrayList<Client> users=new ArrayList<>();
     ArrayList<Role> roles=new ArrayList<>();
-    HashMap<String ,ArrayList<String> > permissions = new HashMap<>();
+   public  HashMap<String ,ArrayList<String> > permissions = new HashMap<>();
     Client owner=null;
    public int id;
    public String imageAddress;
@@ -75,7 +75,7 @@ public class ServerChat implements Serializable {
     public void addRole(Role role){
         roles.add(role);
     }
-    public void addPermission(String name,ArrayList<String> permissionsOfIt){
+    public  void addPermission(String name,ArrayList<String> permissionsOfIt){
         permissions.put(name,permissionsOfIt);
     }
     public boolean checkPermission(String  name ,String  permission){

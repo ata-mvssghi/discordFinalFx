@@ -10,7 +10,7 @@ public class Main {
 
     }
     public static void main(String[] args) {
-        Server server = new Server(8500);
+        Server server = new Server(7000);
         server.startServer();
     }
 }

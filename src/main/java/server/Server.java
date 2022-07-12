@@ -158,6 +158,7 @@ public class Server {
                         }
                         else if (message.getType() == Message.Type.createNewGroupRequest) {
                             System.out.println(message.getSender()+" wants to create a new chat");
+                            objectOutput.reset();
                             objectOutput.writeObject(allClients);
                             Group newGroup;
                             newGroup = (Group) objectInput.readObject();
@@ -397,7 +398,7 @@ public class Server {
 //                            objectOutput.writeObject(new Message(name,"nothing inportant", Message.Type.linkOfDownload));
 //                            objectOutput.writeObject(targetLinks);
                             String address= (String) objectInput.readObject();
-                            int SOCKET_PORT = 9000;
+                            int SOCKET_PORT = 13267;
                             String FILE_TO_SEND = address;
                             System.out.println(address+"        goy");
                             FileInputStream fis = null;
@@ -442,6 +443,7 @@ public class Server {
                             for(Client client:allClients){
                                 if(client.getUsername().equals(message.getSender())){
                                     client.image=message.getText();
+                                    System.out.println("image of the client "+client.getUsername()+"  was set successfully");
                                 }
                             }
                         }
@@ -472,12 +474,14 @@ public class Server {
                             System.out.println("460");
                             for(ClientHandler clientHandler:clients){
                                 if(clientHandler.name.equals(friendShipReq.getTargetClient())){
+                                    objectOutput.reset();
                                     clientHandler.objectOutput.writeObject(allClients);
                                     System.out.println("haaa eee esmash : "+clientHandler.name);
                                     clientHandler.sendMsg(new Message(clientHandler.name,friendShipReq.getOriginClient(), Message.Type.friendReq));
                                     System.out.println("466");
                                 }
                                 else if (clientHandler.name.equals(friendShipReq.getOriginClient())) {
+                                    objectOutput.reset();
                                     clientHandler.objectOutput.writeObject(allClients);
                                 }
                             }

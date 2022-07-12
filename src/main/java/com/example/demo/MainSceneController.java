@@ -134,6 +134,7 @@ public class MainSceneController implements Serializable,Initializable {
             Label serverNAme=new Label();
             hBox.getChildren().add(serverNAme);
             serverList.getChildren().add(hBox);
+            serverSettingsController.ServerId=serverChat.id;
             hBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
@@ -181,6 +182,7 @@ public class MainSceneController implements Serializable,Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
 

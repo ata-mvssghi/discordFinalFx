@@ -53,6 +53,6 @@
             <Button mnemonicParsing="false" onMouseClicked="#switchToFriend" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #5427d1;" text="friends" textFill="#090515" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
-      <BorderPane fx:id="chatPane" layoutX="275.0" prefHeight="519.0" prefWidth="735.0" />
+      <BorderPane fx:id="chatPane" layoutX="275.0" prefHeight="519.0" prefWidth="745.0" />
    </children>
 </AnchorPane>

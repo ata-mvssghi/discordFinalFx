@@ -49,7 +49,9 @@ public class Client implements Serializable {
    public boolean confirmPass;
    public MainSceneController mainSceneController;
    public chatController chatController1;
-   public void setMainSceneController(MainSceneController mainSceneController){
+    private String permissionChoice;
+
+    public void setMainSceneController(MainSceneController mainSceneController){
        this.mainSceneController=mainSceneController;
    }
    public void setChatController1(chatController chatController1){
@@ -655,7 +657,7 @@ public class Client implements Serializable {
                         System.out.println("YOU ARE ADDED TO A NEW CHAT");
                         if(((Group) respons).getType()== Group.Type.channel){
                             for(ServerChat serverChat:serversChats){
-                                if(serverChat.id==((Group)respons).getId()){
+                                if(serverChat.id==((Group)respons).getServerChatId()){
                                     serverChat.addToChannels((Group)respons);
                                     System.out.println("you are added to a new channel");
                                 }
