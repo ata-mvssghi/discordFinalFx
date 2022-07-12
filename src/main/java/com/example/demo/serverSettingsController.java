@@ -107,6 +107,9 @@ public class serverSettingsController implements Initializable {
 //        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 //        stage.setScene(new Scene(root));
 //    }
+    /**
+    addes new h boxes and a new fxml and goes to setController and it's fxml
+     **/
     public void setRole(Event event){
         for(ServerChat serverChat:Client.serversChats){
             if(serverChat.id==ServerId){
@@ -135,6 +138,15 @@ public class serverSettingsController implements Initializable {
                 }
             }
         }
+    }
+    public void playMusic(Event event){
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MusicPlayer.fxml")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
 
 }
