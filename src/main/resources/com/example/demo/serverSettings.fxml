@@ -15,7 +15,7 @@
          <content>
             <VBox fx:id="channels" prefHeight="390.0" prefWidth="165.0" style="-fx-background-color: #4f5ca1;" />
          </content></ScrollPane>
-      <Button layoutX="42.0" layoutY="130.0" mnemonicParsing="false" style="-fx-background-color: #e627b9;" text="play a song" textFill="#fcf8f8">
+      <Button layoutX="42.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#playMusic" style="-fx-background-color: #e627b9;" text="play a song" textFill="#fcf8f8">
          <font>
             <Font name="Bodoni MT" size="14.0" />
          </font>
